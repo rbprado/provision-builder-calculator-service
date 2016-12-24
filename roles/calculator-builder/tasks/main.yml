@@ -14,3 +14,23 @@
   apt:
     name: git
     state: present
+
+- name: ensure .ssh directory exists.
+  file: 
+    dest: "{{ key_file }}"
+    mode: 0700 
+    owner: root
+    state: directory
+
+- name: Install ssh key
+  copy: 
+    content: "{{ ssh_key }}" 
+    dest: "{{ key_file }}"
+    mode: 0600
+    owner: root
+
+- name: git clone calculator-service
+  git:
+    repo: git://foosball.example.org/path/to/repo.git
+    dest: /root/
+

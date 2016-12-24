@@ -17,12 +17,12 @@
 
 - name: ensure .ssh directory exists.
   file: 
-    dest: "{{ key_file }}"
+    dest: "/root/.ssh/"
     mode: 0700 
     owner: root
     state: directory
 
-- name: Install ssh key
+- name: install ssh key
   copy: 
     content: "{{ ssh_key }}" 
     dest: "{{ key_file }}"

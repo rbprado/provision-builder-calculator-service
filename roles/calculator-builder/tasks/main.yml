@@ -1,10 +1,20 @@
 ---
 
-- name: add repo for java 8
-  apt_repository: repo='ppa:webupd8team/java' state=present
+- name: add repo for java8 and maven3
+  apt_repository: repo={{item}}
+  with_items:
+       - 'ppa:webupd8team/java' state=present
+       - 'ppa:andrei-pozolotin/maven3'
 
 - name: accept java 8 oracle license
   debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+
+- name: purge all maven before install maven3
+  apt: name={{item}} state=absent
+  with_items:
+       - maven
+       - maven2
+       - maven3
 
 - name: install java 8
   apt: name=oracle-java8-installer state=latest update-cache=yes force=yes
@@ -13,7 +23,7 @@
   apt: name={{item}} state=present update_cache=yes
   with_items:
        - git
-       - maven2
+       - maven
        - python-software-properties
 
 - name: install git

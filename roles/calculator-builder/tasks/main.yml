@@ -31,6 +31,12 @@
 
 - name: git clone calculator-service
   git:
-    repo: git://foosball.example.org/path/to/repo.git
-    dest: /root/
+    repo: https://gitlab.com/devgrid/calculator-service.git
+    dest: /root/calculator-service
+    accept_hostkey: yes
 
+- name: git clone calculator-service-test
+  git:
+    repo: https://gitlab.com/devgrid/calculator-service-test.git
+    dest: /root/calculator-service-test
+    accept_hostkey: yes

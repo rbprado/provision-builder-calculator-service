@@ -1,15 +1,20 @@
 ---
 
-- name: install ppa openjdk repository
-  apt_repository:
-    repo: 'ppa:openjdk-r/ppa'
+- name: add repo for java 8
+  apt_repository: repo='ppa:webupd8team/java' state=present
 
-- name: install packages
+- name: accept java 8 oracle license
+  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+
+- name: install java 8
+  apt: name=oracle-java8-installer state=latest update-cache=yes force=yes
+
+- name: install other packages
   apt: name={{item}} state=present update_cache=yes
   with_items:
-       - openjdk-8-jdk
        - git
-       - maven2    
+       - maven2
+       - python-software-properties
 
 - name: install git
   apt:

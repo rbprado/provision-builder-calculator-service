@@ -10,7 +10,7 @@
   debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
 
 - name: purge all maven before install maven3
-  apt: name={{item}} state=absent
+  apt: name={{item}} state=absent purge=yes
   with_items:
        - maven
        - maven2

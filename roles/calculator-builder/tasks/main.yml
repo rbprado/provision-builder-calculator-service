@@ -3,7 +3,7 @@
 - name: add repo for java8 and maven3
   apt_repository: repo={{item}}
   with_items:
-       - 'ppa:webupd8team/java' state=present
+       - 'ppa:webupd8team/java'
        - 'ppa:andrei-pozolotin/maven3'
 
 - name: accept java 8 oracle license

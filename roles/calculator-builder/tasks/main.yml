@@ -1,0 +1,16 @@
+---
+
+- name: install ppa openjdk repository
+  apt_repository:
+    repo: 'ppa:openjdk-r/ppa'
+
+- name: install java8
+  apt: 
+    name: openjdk-8-jre 
+    state: present
+    update_cache: yes
+
+- name: install git
+  apt:
+    name: git
+    state: present

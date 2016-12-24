@@ -1,0 +1,7 @@
+---
+- name: setup builder gocd agent 
+  hosts: gocd-prado-builder
+  user: vagrant
+  sudo: true
+  roles:
+    - calculator-builder

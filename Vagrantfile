@@ -21,7 +21,6 @@ Vagrant.configure('2') do |config|
       ansible.verbose             = 'v'
       ansible.host_key_checking   = false
       ansible.limit               = 'all'
-      ansible.vault_password_file = '../provision-builder-calculator-service-vault-keys/vault.key'
     end
 
   end

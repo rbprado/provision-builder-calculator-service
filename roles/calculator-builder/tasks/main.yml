@@ -26,29 +26,12 @@
        - maven
        - python-software-properties
 
-- name: install git
-  apt:
-    name: git
-    state: present
-
-- name: ensure .ssh directory exists.
-  file: 
-    dest: "/root/.ssh/"
-    mode: 0700 
-    owner: root
-    state: directory
-
-- name: install ssh key
-  copy: 
-    content: "{{ ssh_key }}" 
-    dest: "{{ key_file }}"
-    mode: 0600
-    owner: root
 
 - name: git clone calculator-service
   git:
     repo: https://gitlab.com/devgrid/calculator-service.git
     dest: /root/calculator-service
+    version: "{{ lookup('file', 'GIT_REF') }}"
     accept_hostkey: yes
 
 - name: git clone calculator-service-test

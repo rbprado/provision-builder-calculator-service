@@ -1,4 +1,0 @@
----
-
-vars:
-  gitref: "{{ lookup('file', '/vagrant/GIT_REF') }}"
